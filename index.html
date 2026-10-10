@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}img{max-width:100%}body{margin:0}</style>
+<title>Nuestro Hilo Rojo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Zen+Kaku+Gothic+New:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: una sola columna tipo carta de papel washi, que se va desplegando como un rollo; el hilo rojo (akai ito) es el único acento. */
+:root{
+  --paper:#f7f2ec;      /* washi */
+  --paper-2:#efe6dc;
+  --ink:#231c1a;        /* sumi */
+  --ink-soft:#6d605a;
+  --thread:#c8102e;     /* hilo rojo */
+  --thread-soft:#f3d4d6;
+  --f-display:"Shippori Mincho","Hiragino Mincho ProN","Times New Roman",serif;
+  --f-body:"Zen Kaku Gothic New","Hiragino Sans","Segoe UI",system-ui,sans-serif;
+  --f-hand:"Caveat","Bradley Hand","Comic Sans MS",cursive;
+  color-scheme:light;
+}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.7;
+  padding-inline:20px;padding-block:0 64px;
+  background-image:radial-gradient(circle at 20% 10%,rgba(200,16,46,.035),transparent 40%),radial-gradient(circle at 90% 70%,rgba(35,28,26,.03),transparent 45%);}
+main{max-width:460px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center}
+section{width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;padding-block:40px}
+
+.kanji{font-family:var(--f-display);color:var(--thread);font-size:15px;letter-spacing:.5em;margin-top:28px;padding-left:.5em}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+.date{font-family:var(--f-display);font-weight:400;font-size:clamp(44px,13vw,64px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:.02em;display:flex;align-items:baseline}
+.date .slash{color:var(--thread);margin-inline:.06em}
+.date .d{display:inline-block;min-width:.6em}
+.days{font-size:14px;color:var(--ink-soft)}
+.days b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+
+.polaroid{background:#fff;padding:12px 12px 0;box-shadow:0 1px 2px rgba(35,28,26,.08),0 14px 30px -12px rgba(35,28,26,.28);transform:rotate(-1.5deg);width:min(100%,320px)}
+.polaroid .ph{aspect-ratio:4/5;width:100%;max-width:100%;overflow:hidden;background:var(--paper-2)}
+.polaroid img{width:100%;height:100%;object-fit:cover;display:block}
+.polaroid figcaption{font-family:var(--f-display);font-size:26px;padding:12px 0 14px}
+.polaroid figcaption .amp{color:var(--thread);font-style:italic;margin-inline:.2em}
+
+.legend{font-family:var(--f-display);font-size:19px;line-height:1.75;max-width:30ch;text-wrap:balance}
+.legend p{margin:0 0 1.1em}
+.legend em{color:var(--ink-soft)}
+.to-you{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1;color:var(--thread);letter-spacing:.06em}
+
+.btn{font:500 15px var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--paper);background:var(--thread);border:0;border-radius:999px;padding:14px 30px;cursor:pointer;box-shadow:0 8px 20px -8px rgba(200,16,46,.6);transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.hint{font-size:13px;color:var(--ink-soft);margin-top:-8px}
+
+.stage{width:100%;max-width:100%;aspect-ratio:1/1;background:#fffdf9;box-shadow:inset 0 0 0 1px rgba(35,28,26,.06)}
+.stage svg{width:100%;height:100%;display:block}
+.draw{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.stage text{font-family:var(--f-hand);fill:var(--ink-soft);font-size:30px}
+
+.finale{position:relative;width:100%;max-width:100%;aspect-ratio:3/4;overflow:hidden;box-shadow:0 18px 40px -16px rgba(35,28,26,.45)}
+.finale img{width:100%;height:100%;object-fit:cover;display:block}
+.finale::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 30%,transparent 60%,rgba(0,0,0,.5))}
+.finale .top,.finale .bottom{position:absolute;left:0;right:0;z-index:2;color:#fff;font-family:var(--f-hand);text-shadow:0 2px 8px rgba(0,0,0,.4);padding-inline:16px}
+.finale .top{top:18px;font-size:clamp(28px,9vw,40px);line-height:1;font-weight:700}
+.finale .bottom{bottom:18px;font-size:clamp(20px,6vw,26px);line-height:1.15}
+.finale svg{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.sign{font-family:var(--f-hand);font-size:28px;color:var(--ink)}
+
+
+.journey{position:relative;width:100%;padding-block:8px 24px}
+.journey > svg.trail{position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;overflow:visible;pointer-events:none}
+.chapter{position:relative;z-index:1;display:flex;flex-direction:column;gap:34px;padding-block:28px}
+.chapter h3{margin:0;font-family:var(--f-hand);font-weight:700;font-size:30px;color:var(--thread);line-height:1;background:var(--paper);align-self:center;padding:4px 14px}
+.snap{margin:0;background:#fff;padding:9px 9px 26px;width:74%;max-width:100%;box-shadow:0 1px 2px rgba(35,28,26,.08),0 12px 26px -12px rgba(35,28,26,.32);position:relative}
+.snap img{width:100%;height:auto;display:block;background:var(--paper-2)}
+.snap:nth-of-type(odd){align-self:flex-start;transform:rotate(-2.2deg)}
+.snap:nth-of-type(even){align-self:flex-end;transform:rotate(2deg)}
+.snap.wide{width:92%}
+.snap::before{content:"";position:absolute;top:-9px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--thread);box-shadow:0 2px 3px rgba(0,0,0,.25)}
+.intro-j{font-family:var(--f-display);font-size:19px;line-height:1.7;max-width:28ch;text-wrap:balance;margin:0}
+.snap video{width:100%;height:auto;display:block;background:var(--ink)}
+.snd{position:absolute;right:16px;bottom:34px;font:500 12px var(--f-body);letter-spacing:.04em;color:#fff;background:rgba(35,28,26,.55);border:0;border-radius:999px;padding:6px 12px;cursor:pointer;backdrop-filter:blur(4px)}
+.snd[aria-pressed="true"]{background:var(--thread)}
+.snd:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.chapter .note{margin:-18px 0 0;font-family:var(--f-display);font-style:italic;font-size:17px;line-height:1.65;color:var(--ink-soft);max-width:30ch;align-self:center;text-wrap:balance;background:var(--paper);padding:2px 8px}
+.letter{width:100%;max-width:100%;background:#fffdf9;padding:28px 24px;box-shadow:0 1px 2px rgba(35,28,26,.08),0 14px 30px -14px rgba(35,28,26,.3);text-align:left;font-family:var(--f-display);font-size:18px;line-height:1.75;position:relative;z-index:1;border-top:3px solid var(--thread)}
+.letter p{margin:0 0 1em}
+.letter .salute{font-family:var(--f-hand);font-size:30px;color:var(--thread);margin-bottom:.4em}
+.letter .close{font-family:var(--f-hand);font-size:28px;margin:0}
+[hidden]{display:none!important}
+.reveal{transition:opacity 1s ease,transform 1s ease}
+.reveal.pending{opacity:0;transform:translateY(16px)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<main>
+  <div class="kanji">赤 い 糸</div>
+
+  <section aria-label="Fecha">
+    <div class="eyebrow">Todo empezó el</div>
+    <div class="date" id="date" aria-live="polite"></div>
+    <div class="days" id="days"></div>
+  </section>
+
+  <figure class="polaroid" style="margin:0">
+    <div class="ph"><img id="photo1" alt="Nosotros"></div>
+    <figcaption><span id="n1"></span><span class="amp">&amp;</span><span id="n2"></span></figcaption>
+  </figure>
+
+  <section aria-label="La leyenda">
+    <div class="legend">
+      <p><em>Cuenta una leyenda japonesa</em><br>que dos personas destinadas a encontrarse están unidas por un hilo rojo invisible.</p>
+      <p>Puede estirarse, enredarse o perderse entre los caminos de la vida…<br><em>pero nunca se rompe.</em></p>
+      <p>Me alegra que mi hilo rojo<br>me haya llevado hasta</p>
+    </div>
+    <div class="to-you">TI</div>
+  </section>
+
+  <section id="gate">
+    <button class="btn" id="go" type="button">Descúbrelo</button>
+    <div class="hint">toca para seguir el hilo</div>
+  </section>
+
+  <section id="part2" hidden>
+    <div class="stage">
+      <svg viewBox="0 0 400 400" aria-label="Tú y yo, unidos por un hilo rojo">
+        <path id="c1" class="draw" stroke="var(--ink)" stroke-width="3.2" d="M200 120 C150 92 86 112 72 168 C58 226 102 272 156 270 C200 268 230 232 228 190 C226 146 196 116 160 112"/>
+        <path id="c2" class="draw" stroke="var(--ink)" stroke-width="3.2" d="M170 140 C190 104 250 92 294 116 C338 142 344 206 314 244 C284 280 222 282 188 252 C162 228 156 182 176 152"/>
+        <text id="t1" x="118" y="200" opacity="0">tú</text>
+        <text id="tamp" x="189" y="200" opacity="0">&amp;</text>
+        <text id="t2" x="262" y="200" opacity="0">yo</text>
+        <path id="thread" class="draw" stroke="var(--thread)" stroke-width="3" d="M209 260 C214 290 222 312 248 318 C276 324 284 296 266 290 C246 284 248 330 280 340 C312 350 336 326 360 336 C376 343 386 350 398 352"/>
+        <circle id="knot" cx="208" cy="258" r="0" fill="var(--thread)"/>
+      </svg>
+    </div>
+
+    <p class="intro-j reveal pending" id="jintro">Y desde ese 11 de octubre, el hilo nos ha llevado lejos…</p>
+    <div class="journey reveal pending" id="journey">
+      <svg class="trail" aria-hidden="true"><path id="trailPath" class="draw" stroke="var(--thread)" stroke-width="2.6"/></svg>
+      <div class="chapter"><h3>Cerros y cielo azul</h3><p class="note">Contigo, cualquier camino vale la pena.</p>
+        <figure class="snap"><img src="fotos/m1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/m2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/pulgar.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/m3.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/puente.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/m4.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/m5.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/aromo.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/m6.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+      </div>
+      <div class="chapter"><h3>Frente al mar</h3><p class="note">Hay lugares que se vuelven nuestros solo porque estuvimos ahí juntos.</p>
+        <figure class="snap"><img src="fotos/c1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/auto2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap wide"><img src="fotos/perromar.jpg" width="1000" height="750" loading="lazy" alt=""></figure>
+        <figure class="snap wide vid"><video src="videos/mar.mp4" poster="videos/mar.jpg" width="960" height="540" muted loop playsinline preload="metadata"></video><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido">♪ Con sonido</button></figure>
+        <figure class="snap"><img src="fotos/dupla.jpg" width="933" height="1400" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/s1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/s2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/s3.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/s4.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+      </div>
+      <div class="chapter"><h3>Atardeceres</h3><p class="note">Los finales del día siempre son más lindos a tu lado.</p>
+        <figure class="snap"><img src="fotos/a1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap wide"><img src="fotos/a2.jpg" width="1000" height="750" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/playa1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/playa2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/playa3.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+      </div>
+      <div class="chapter"><h3>Nuestros días</h3><p class="note">Lo simple contigo se volvió mi parte favorita.</p>
+        <figure class="snap"><img src="fotos/espejo.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/cine.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/sillon.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/c2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/graffiti.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/cumple.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/tienda.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap wide"><img src="fotos/dormir.jpg" width="1000" height="750" loading="lazy" alt=""></figure>
+      </div>
+      <div class="chapter"><h3>Nuestras noches</h3><p class="note">Contigo, las noches siempre se hacen cortas.</p>
+        <figure class="snap"><img src="fotos/n1.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap vid"><video src="videos/noche.mp4" poster="videos/noche.jpg" width="480" height="848" muted loop playsinline preload="metadata"></video><button class="snd" type="button" aria-pressed="false" aria-label="Activar sonido">♪ Con sonido</button></figure>
+        <figure class="snap"><img src="fotos/n2.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/n3.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+        <figure class="snap"><img src="fotos/n4.jpg" width="750" height="1000" loading="lazy" alt=""></figure>
+      </div>
+      <div class="chapter"><h3>De la mano</h3><p class="note">Un año después, te sigo eligiendo.</p>
+        <figure class="snap"><img src="fotos/manos.jpg" width="787" height="1400" loading="lazy" alt=""></figure>
+      </div>
+    </div>
+
+    <article class="letter reveal pending" id="letter">
+      <p class="salute">Valentina:</p>
+      <p>Hace un año empezamos esta historia, y hoy no me imagino mis días sin ti.</p>
+      <p>Gracias por tu risa, por tu paciencia, por acompañarme en cada aventura. Gracias por hacerme sentir en casa en cualquier lugar, siempre que estés tú.</p>
+      <p>No sé todo lo que nos espera, pero sé que quiero vivirlo contigo: más cerros, más mar, más atardeceres y muchos más días a tu lado amándote con toda mi alma.</p>
+      <p class="close">Feliz primer año, mi amor.</p>
+    </article>
+
+    <div class="finale reveal pending" id="finale">
+      <img id="photo2" alt="Nosotros">
+      <div class="top">Tenemos el amor<br>más bonito</div>
+      <svg viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+        <path id="heart" transform="translate(0,-145)" class="draw" stroke="var(--thread)" stroke-width="2.6" d="M-10 300 C40 296 70 302 96 290 C110 283 112 262 98 256 C84 250 72 262 76 276 C80 290 96 304 110 316 C124 304 140 290 144 276 C148 262 136 250 122 256 C108 262 110 283 124 290 C150 302 200 290 240 300 C270 308 290 296 310 290"/>
+      </svg>
+      <div class="bottom">Gracias por compartir<br>tu vida conmigo</div>
+    </div>
+    <div class="sign reveal pending" id="sign"></div>
+  </section>
+</main>
+
+<script>
+/* ======== EDITA AQUÍ ======== */
+const CONFIG = {
+  nombre1: "José",
+  nombre2: "Valentina",
+  fecha: "2025-10-11",          // AAAA-MM-DD: el día que empezaron
+  firma: "Te amo · José",
+  foto1: "fotos/portada.jpg",    // foto polaroid
+  foto2: "fotos/final.jpg"      // foto final
+};
+/* ============================ */
+
+const placeholder = (label, a, b) => "data:image/svg+xml;utf8," + encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient></defs><rect width="400" height="500" fill="url(#g)"/><path d="M60 420 C140 380 120 300 200 300 C280 300 260 380 340 420" fill="none" stroke="#c8102e" stroke-width="3" opacity=".6"/><text x="200" y="250" text-anchor="middle" font-family="Georgia,serif" font-size="26" fill="#6d605a">${label}</text></svg>`);
+
+document.getElementById("n1").textContent = CONFIG.nombre1;
+document.getElementById("n2").textContent = CONFIG.nombre2;
+document.getElementById("sign").textContent = CONFIG.firma;
+document.getElementById("photo1").src = CONFIG.foto1 || placeholder("Tu foto aquí", "#efe6dc", "#e6d9cf");
+document.getElementById("photo2").src = CONFIG.foto2 || placeholder("Foto final aquí", "#d9e4ee", "#f1d9cf");
+
+/* Fecha con dígitos que giran hasta asentarse */
+const [Y, M, D] = CONFIG.fecha.split("-");
+const target = `${D}/${M}/${Y}`;
+const dateEl = document.getElementById("date");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function renderDate(str){
+  dateEl.innerHTML = [...str].map(c => c === "/" ? '<span class="slash">/</span>' : `<span class="d">${c}</span>`).join("");
+}
+renderDate(target);
+if (!reduce) {
+  const digits = [...target].map((c,i)=>({c,i})).filter(o=>o.c!=="/");
+  let frame = 0;
+  const settleAt = digits.map((_,k)=>8 + k*3);
+  const timer = setInterval(()=>{
+    frame++;
+    const out = [...target];
+    digits.forEach((o,k)=>{ if(frame < settleAt[k]) out[o.i] = String(Math.floor(Math.random()*10)); });
+    renderDate(out.join(""));
+    if (frame >= settleAt[settleAt.length-1]) clearInterval(timer);
+  }, 70);
+}
+const start = new Date(`${CONFIG.fecha}T00:00:00`);
+const nDays = Math.floor((Date.now() - start) / 86400000);
+const now = new Date();
+const isAnniv = now.getDate() === start.getDate() && now.getMonth() === start.getMonth() && now.getFullYear() > start.getFullYear();
+const years = now.getFullYear() - start.getFullYear();
+if (isAnniv) document.getElementById("days").innerHTML = `Hoy cumplimos <b>${years === 1 ? "un año" : years + " años"}</b> · ${nDays.toLocaleString("es-CL")} días unidos por el mismo hilo`;
+else if (nDays > 0) document.getElementById("days").innerHTML = `<b>${nDays.toLocaleString("es-CL")}</b> días unidos por el mismo hilo`;
+
+/* Animación de trazo */
+function prep(el){ const L = el.getTotalLength(); el.style.strokeDasharray = L; el.style.strokeDashoffset = L; return L; }
+function draw(el, ms, delay=0){
+  return new Promise(res=>{
+    prep(el);
+    setTimeout(()=>{
+      el.style.transition = `stroke-dashoffset ${ms}ms ease-in-out`;
+      requestAnimationFrame(()=>{ el.style.strokeDashoffset = 0; });
+      setTimeout(res, ms);
+    }, delay);
+  });
+}
+const wait = ms => new Promise(r=>setTimeout(r, ms));
+const fadeText = id => { const t=document.getElementById(id); t.style.transition="opacity .6s"; t.setAttribute("opacity","1"); };
+
+document.getElementById("go").addEventListener("click", async ()=>{
+  document.getElementById("gate").hidden = true;
+  const part2 = document.getElementById("part2");
+  part2.hidden = false;
+  const heart = document.getElementById("heart");
+  ["c1","c2","thread"].forEach(id=>prep(document.getElementById(id)));
+  prep(heart);
+  part2.scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
+  const k = reduce ? 0.01 : 1;
+  await wait(500*k);
+  await draw(document.getElementById("c1"), 1400*k);
+  fadeText("t1");
+  await draw(document.getElementById("c2"), 1400*k);
+  fadeText("t2"); await wait(300*k); fadeText("tamp");
+  const knot = document.getElementById("knot");
+  knot.style.transition = "r .4s"; knot.setAttribute("r", "5");
+  await draw(document.getElementById("thread"), 1800*k);
+  await wait(500*k);
+  ["jintro","journey","letter","finale"].forEach(id=>document.getElementById(id).classList.remove("pending"));
+  buildTrail();
+  document.getElementById("jintro").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"center"});
+  const fin = document.getElementById("finale");
+  const io = new IntersectionObserver(async (entries)=>{
+    if (!entries.some(e=>e.isIntersecting)) return;
+    io.disconnect();
+    await wait(500*k);
+    await draw(heart, 2600*k);
+    document.getElementById("sign").classList.remove("pending");
+  }, {threshold:0.6});
+  io.observe(fin);
+});
+
+/* Hilo que recorre todas las fotos y se dibuja al hacer scroll */
+const journey = document.getElementById("journey");
+const trail = document.getElementById("trailPath");
+let trailLen = 0;
+function buildTrail(){
+  if (journey.closest("[hidden]")) return;
+  const box = journey.getBoundingClientRect();
+  const W = box.width;
+  const pts = [[W/2, 0]];
+  journey.querySelectorAll(".snap").forEach(f=>{
+    const r = f.getBoundingClientRect();
+    pts.push([r.left - box.left + r.width/2, r.top - box.top - 2]);
+  });
+  pts.push([W/2, box.height]);
+  let d = `M${pts[0][0]} ${pts[0][1]}`;
+  for (let i=1;i<pts.length;i++){
+    const [x0,y0]=pts[i-1],[x1,y1]=pts[i];
+    const dy=(y1-y0)/2, sway=(i%2?1:-1)*W*0.32;
+    d += ` C${x0+sway} ${y0+dy*0.6} ${x1-sway} ${y1-dy*0.9} ${x1} ${y1}`;
+  }
+  trail.setAttribute("d", d);
+  trailLen = trail.getTotalLength();
+  trail.style.transition = "none";
+  trail.style.strokeDasharray = trailLen;
+  onScroll();
+}
+function onScroll(){
+  if (!trailLen) return;
+  const r = journey.getBoundingClientRect();
+  const vh = innerHeight;
+  const p = Math.min(1, Math.max(0, (vh*0.75 - r.top) / r.height));
+  trail.style.strokeDashoffset = reduce ? 0 : trailLen*(1-p);
+}
+addEventListener("scroll", onScroll, {passive:true});
+addEventListener("resize", buildTrail);
+journey.querySelectorAll("img").forEach(img=>img.addEventListener("load", buildTrail));
+
+/* Videos: se reproducen en silencio al aparecer; el botón activa el sonido de uno a la vez */
+const vids=[...journey.querySelectorAll("video")];
+const vio=new IntersectionObserver(es=>es.forEach(e=>{
+  const v=e.target;
+  if(e.isIntersecting && !reduce){ v.play().catch(()=>{}); } else { v.pause(); }
+}),{threshold:0.5});
+vids.forEach(v=>{ vio.observe(v); v.addEventListener("loadedmetadata", buildTrail); });
+journey.querySelectorAll(".snd").forEach(btn=>btn.addEventListener("click",()=>{
+  const v=btn.parentElement.querySelector("video");
+  const on=v.muted;
+  vids.forEach(o=>{ o.muted=true; });
+  journey.querySelectorAll(".snd").forEach(b=>{ b.setAttribute("aria-pressed","false"); b.textContent="♪ Con sonido"; });
+  if(on){ v.muted=false; v.currentTime=0; v.play().catch(()=>{}); btn.setAttribute("aria-pressed","true"); btn.textContent="♪ Silenciar"; }
+}));
+</script>
+
+</body>
+</html>
